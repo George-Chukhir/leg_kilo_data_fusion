@@ -1,0 +1,65 @@
+frequency: 30 #freq of filter for state estimation
+sensor_timeout: 0.1 #if sensor is calm for 0.1s, it's broken
+two_d_mode: false # ignore Z axis
+transform_time_offset: 0.0 
+transform_timeout: 0.0
+print_diagnostics: true
+debug: false
+publish_tf: true
+
+# Frames 
+map_frame: map
+odom_frame: odom_combined           # Name output frame odom_combined, for no mistakes with sdk_odom
+base_link_frame: sdk_base_link_3d   # Our robot's frame
+world_frame: odom_combined          # Relative to what we consider the world (world frame - boss frame)
+
+# -------------------------------------
+# ODOMETRY CONFIGURATION
+# -------------------------------------
+odom0: /state_SDK
+# Matrix: [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
+# Take only velocity (vx, vy, vz) and angular velocity (vroll, vpitch, vyaw)
+odom0_config: [false, false, false, #(position)
+               false, false, false, #(orientation)
+               true,  true,  true, #(linear velocity)
+               true,  true,  true, #(angular velocity)
+               false, false, false] #(acceleration)
+odom0_differential: false
+odom0_relative: false
+odom0_queue_size: 10
+odom0_nodelay: false #how fast we send packages throught network
+
+# -------------------------------------
+# IMU CONFIGURATION
+# -------------------------------------
+imu0: /imu_raw
+# Take orientation (roll, pitch, yaw) and angular velocity + linear velocity
+imu0_config: [false, false, false,
+              true,  true,  true,
+              false, false, false,
+              true,  true,  true,
+              true,  true,  true]
+imu0_differential: false #take t and t-1 and compute diffrence 
+imu0_relative: true #start in 0 
+imu0_queue_size: 10 #buffering 
+imu0_remove_gravitational_acceleration: true #off acceleration on IMU's before estimation
+
+
+# Adding noise (Process Noise Covariance)
+# This tells the filter: "Even if the sensors say everything is perfect, 
+# the robot itself may jerk around, so add a little uncertainty(noise)."
+process_noise_covariance: [0.05, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                           0,    0.05, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                           0,    0,    0.06, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                           0,    0,    0,    0.03, 0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                           0,    0,    0,    0,    0.03, 0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                           0,    0,    0,    0,    0,    0.06, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                           0,    0,    0,    0,    0,    0,    0.025, 0,     0,    0,    0,    0,    0,    0,    0,
+                           0,    0,    0,    0,    0,    0,    0,     0.025, 0,    0,    0,    0,    0,    0,    0,
+                           0,    0,    0,    0,    0,    0,    0,     0,     0.04, 0,    0,    0,    0,    0,    0,
+                           0,    0,    0,    0,    0,    0,    0,     0,     0,    0.01, 0,    0,    0,    0,    0,
+                           0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.01, 0,    0,    0,    0,
+                           0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.02, 0,    0,    0,
+                           0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.01, 0,    0,
+                           0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.01, 0,
+                           0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.015]

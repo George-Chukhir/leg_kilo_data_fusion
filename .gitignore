@@ -1,0 +1,16 @@
+# ROS build and log files
+build/
+devel/
+logs/
+.catkin_workspace
+*.bag
+*.log
+
+# Third-party Unitree SDKs (should be cloned separately)
+unitree_legged_sdk/
+unitree_ros/
+unitree_ros_to_real/
+
+# IDE files
+.vscode/
+.idea/
