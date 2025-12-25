@@ -41,5 +41,5 @@ The system maintains a valid transformation chain. Results can be found in resul
 ### Mapping
 By fusing IMU and leg odometry, the position drift was significantly reduced, allowing for a consistent 2D occupancy grid map.
 
-![Map Result](maps/my_map.pgm)
+![Map Result](maps/unitree_running_map.pgm)
 
