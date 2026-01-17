@@ -1,3 +1,17 @@
+## 🐳 Running with Docker (Recommended)
+
+To run the project without installing ROS manually, use Docker Compose:
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/George-Chukhir/Robot-State-Estimation-Localization.git](https://github.com/George-Chukhir/Robot-State-Estimation-Localization.git)
+   cd Robot-State-Estimation-Localization
+2. Build and run the container:
+   docker-compose up --build
+
+3. Connect to the container:
+   docker-compose run robot
+
 # Unitree Go1 Sensor Fusion & 2D Mapping
 
 This repository contains the ROS implementation of an Extended Kalman Filter (EKF) and SLAM for the Unitree Go1 quadruped robot, based on the [LegKilo Dataset](https://github.com/ouguangjun/legkilo-dataset).
