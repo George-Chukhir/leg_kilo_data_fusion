@@ -7,9 +7,11 @@ To run the project without installing ROS manually, use Docker Compose:
    git clone [https://github.com/George-Chukhir/Robot-State-Estimation-Localization.git](https://github.com/George-Chukhir/Robot-State-Estimation-Localization.git)
    cd Robot-State-Estimation-Localization
 2. Build and run the container:
+   ```bash
    docker-compose up --build
 
-3. Connect to the container:
+4. Connect to the container:
+   ```bash
    docker-compose run robot
 
 # Unitree Go1 Sensor Fusion & 2D Mapping
