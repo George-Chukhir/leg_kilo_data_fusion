@@ -10,10 +10,6 @@ To run the project without installing ROS manually, use Docker Compose:
    ```bash
    docker-compose up --build
 
-4. Connect to the container:
-   ```bash
-   docker-compose run robot
-
 # Unitree Go1 Sensor Fusion & 2D Mapping
 
 This repository contains the ROS implementation of an Extended Kalman Filter (EKF) and SLAM for the Unitree Go1 quadruped robot, based on the [LegKilo Dataset](https://github.com/ouguangjun/legkilo-dataset).
