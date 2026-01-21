@@ -2,13 +2,19 @@ version: '2.4'
 
 services:
   robot: 
-    #Make an image from this current package
+    #look for Docker file in that package 
     build: .
     image: george0506/leg_kilo_fusion:v1
 
     #Container parameters
     container_name: unitree_robot_fusion
     network_mode: host
+
+    #GUI Rviz
+    environment:
+      - DISPLAY=${DISPLAY}        # send the address of monittor
+      - QT_X11_NO_MITSHM=1        # fix Qt in Docker 
+#      - LIBGL_ALWAYS_SOFTWARE=1   # forced CPU rendering
 
     #Compose don't have -it so we make this flags
     stdin_open: true #analog -i (interactive)
@@ -17,5 +23,8 @@ services:
     #Shared folders
     volumes:
     - /home/stringer/Bagfiles/LegKilo:/root/catkin_ws/bags 
-    
+
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+    - ./root/catkin_ws/src/leg_kilo    
     command: bash
